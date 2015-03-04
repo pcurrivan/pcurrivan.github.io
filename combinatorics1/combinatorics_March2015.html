@@ -1,0 +1,455 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice 4.0.1  (Win32)">
+	<META NAME="CREATED" CONTENT="20150303;4172432">
+	<META NAME="CHANGED" CONTENT="20150304;10214651">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 0.79in }
+		P { margin-bottom: 0.08in }
+		TD P { margin-bottom: 0in }
+		P.sdfootnote { margin-left: 0.2in; text-indent: -0.2in; margin-bottom: 0in; font-size: 10pt }
+		A:link { so-language: zxx }
+		A.sdfootnoteanc { font-size: 57% }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="zxx" DIR="LTR">
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">Combinatorics
+Summary</FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">When dealing
+with sequences from a given collection of elements, there are two
+questions we must ask:</FONT></P>
+<OL>
+	<LI><P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">Does
+	the order of the sequence matter?</FONT></P>
+	<LI><P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">Can we
+	use elements repeatedly or only once?</FONT></P>
+</OL>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">The possible
+answers to these questions give us four types of collections, the
+properties of which are outlined in the table below.</FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">	We will
+always refer to the elements by their indices (whole numbers).  Each
+element can be mapped to a whole number (its index in the vector of
+given elements).  Since the sequences will thus resemble n-radix
+numbers, we will sometimes refer to the elements as digits.</FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">	It is
+helpful to represent each type of collection using a tree structure. 
+Each tree structure has the empty set as its root, representing the
+state before any elements have been placed.  From each node of the
+tree we branch to each possible subsequent element placement, what is
+possible being defined by the type of collection.</FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">	For many
+applications, for example in many &quot;brute force&quot; algorithms,
+we need to visit each sequence of a given type once.  In such cases,
+storing all sequences in memory is not needed and often not feasible.
+ Instead, we will use incrementation algorithms for each type of
+collection, allowing us to move from one sequence to the next,
+visiting each sequence just once, and never storing the previous
+sequences in memory.  The incrementation algorithm for each type of
+collection can be divided into two steps: First, find the first digit
+from the right which is possible to increment.  Second, fill the
+subsequent digits in an appropriate way.  </FONT>
+</P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">	We can
+envisage these algorithms as constructions (or traversals) of the
+associated tree structures.  In the first (&quot;find&quot;) step,
+every time we move our attention to the next digit from the right, we
+are moving to the parent of the current node.  After incrementing the
+first digit which it is possible to increment, and filling the
+subsequent digits appropriately, the resulting sequence is appended
+as the rightmost child of the current node.  Thus the tree structure
+is created via depth-first recursion.</FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif"><I>Number of
+elements = n;	Sample size = k</I></FONT></P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0 RULES=GROUPS>
+	<COLGROUP>
+		<COL WIDTH=31*>
+		<COL WIDTH=1*>
+		<COL WIDTH=20*>
+	</COLGROUP>
+	<COLGROUP>
+		<COL WIDTH=51*>
+	</COLGROUP>
+	<COLGROUP>
+		<COL WIDTH=51*>
+	</COLGROUP>
+	<COLGROUP>
+		<COL WIDTH=51*>
+	</COLGROUP>
+	<COLGROUP>
+		<COL WIDTH=51*>
+	</COLGROUP>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD COLSPAN=3 WIDTH=20%>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">Combinations</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">RCombinations (Combinations
+				w/Repeats)</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">Permutations</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">RPermutations (Permutations
+				w/Repeats)</FONT></P>
+			</TD>
+		</TR>
+	</TBODY>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD COLSPAN=3 WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">Order Matters?</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">No</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">No</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">Yes</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">Yes</FONT></P>
+			</TD>
+		</TR>
+	</TBODY>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD COLSPAN=3 WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">Repeats Allowed?</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">No</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">Yes</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">No</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">Yes</FONT></P>
+			</TD>
+		</TR>
+	</TBODY>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD COLSPAN=3 WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">Example Tree Structure</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><IMG SRC="combinatorics_March2015_html_20840fd5.png" NAME="graphics1" ALIGN=BOTTOM WIDTH=121 HEIGHT=170 BORDER=0></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><IMG SRC="combinatorics_March2015_html_m3ec4f934.png" NAME="graphics2" ALIGN=BOTTOM WIDTH=195 HEIGHT=178 BORDER=0></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><IMG SRC="combinatorics_March2015_html_750515f9.png" NAME="graphics3" ALIGN=BOTTOM WIDTH=122 HEIGHT=171 BORDER=0></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><IMG SRC="combinatorics_March2015_html_7762deb7.png" NAME="graphics4" ALIGN=BOTTOM WIDTH=288 HEIGHT=195 BORDER=0></P>
+			</TD>
+		</TR>
+	</TBODY>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD WIDTH=12%>
+				<P ALIGN=LEFT><FONT FACE="Euclid, serif">Incrementation Algorithm</FONT></P>
+			</TD>
+			<TD COLSPAN=2 WIDTH=8%>
+				<P ALIGN=RIGHT><FONT FACE="Euclid, serif">Intuition:</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif"><I>Take only the sequences with
+				digits in increasing order.</I></FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif"><I>Take only the sequences with
+				digits in equal or increasing order.</I></FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif"><I>Like normal arithmetical
+				incrementation, but after incrementing a digit, fill the
+				following digits sequentially from zero, skipping the values of
+				previous digits.</I></FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif"><I>Increment the n-radix number
+				representing the sequence (normal arithmetical incrementation).</I></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD COLSPAN=3 WIDTH=20%>
+				<P ALIGN=RIGHT STYLE="font-style: normal; font-weight: normal"><FONT FACE="Euclid, serif">Find
+				Step:</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P STYLE="font-style: normal"><FONT FACE="Euclid, serif">-Find
+				the first digit from the right that is less than n - 1 - m, where
+				m is the number of digits to the right of the digit.  Increment
+				it.</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P STYLE="font-style: normal"><FONT FACE="Euclid, serif">-Find
+				the first digit from the right that <FONT COLOR="#000000">is less
+				than n-1 and increment it.</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P STYLE="font-style: normal"><FONT FACE="Euclid, serif">-Find
+				the first digit from the right that <FONT COLOR="#000000">is less
+				than n-1 and increment it, but skip the values of previous
+				digits.</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P STYLE="font-style: normal"><FONT FACE="Euclid, serif">-Find
+				the first digit from the right that <FONT COLOR="#000000">is less
+				than n-1 and increment it.</FONT></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD COLSPAN=3 WIDTH=20%>
+				<P ALIGN=RIGHT STYLE="font-style: normal; font-weight: normal"><FONT FACE="Euclid, serif">Fill
+				Step:</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P STYLE="font-style: normal"><FONT FACE="Euclid, serif">-Fill
+				the digits to the right of the incremented digit sequentially
+				starting with the value of the incremented digit + 1.</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P STYLE="font-style: normal"><FONT FACE="Euclid, serif">-Fill
+				the digits to the right of the incremented digit with the same
+				value as the incremented digit.</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P STYLE="font-style: normal"><FONT FACE="Euclid, serif">-Fill
+				the digits to the right of the incremented digit sequentially
+				starting with 0, but skip the values of previous digits.</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P STYLE="font-style: normal"><FONT FACE="Euclid, serif">-Fill
+				the digits to the right of the incremented digit with zeroes.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD COLSPAN=3 WIDTH=20%>
+				<P ALIGN=RIGHT STYLE="font-style: normal; font-weight: normal"><FONT FACE="Euclid, serif">Example:</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P STYLE="font-style: normal"><FONT FACE="Euclid, serif">(n=8,
+				k=5) 01367 -&gt; 01456</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P STYLE="font-style: normal"><FONT FACE="Euclid, serif">(n=8,
+				k=4) 6177 -&gt; 6222</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P STYLE="font-style: normal"><FONT FACE="Euclid, serif">(n=8,
+				k=5) 01547 -&gt; 01560</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P STYLE="font-style: normal"><FONT FACE="Euclid, serif">(n=8,
+				k=4) 6177 -&gt; 6200</FONT></P>
+			</TD>
+		</TR>
+	</TBODY>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD COLSPAN=2 WIDTH=12%>
+				<P><FONT FACE="Euclid, serif">Total Number of Samples</FONT></P>
+			</TD>
+			<TD WIDTH=8%>
+				<P ALIGN=RIGHT><FONT FACE="Euclid, serif">Formula:</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><IMG SRC="combinatorics_March2015_html_17bca1a1.gif" NAME="Object1" HSPACE=8 WIDTH=224 HEIGHT=47></P>
+				<P><FONT FACE="Euclid, serif">k'th number (counting from zero) of
+				the n'th row of Pascal's triangle (e.g. the third row is
+				[1,3,3,1])</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><IMG SRC="combinatorics_March2015_html_78c2f690.gif" NAME="Object4" HSPACE=8 WIDTH=285 HEIGHT=48></P>
+				<P><FONT FACE="Euclid, serif">sum of the first n numbers of
+				order<A CLASS="sdfootnoteanc" NAME="sdfootnote1anc" HREF="#sdfootnote1sym"><SUP>1</SUP></A>
+				k, or the n'th number of order k+1</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><IMG SRC="combinatorics_March2015_html_529c94cf.gif" NAME="Object2" HSPACE=8 WIDTH=142 HEIGHT=45></P>
+				<P><FONT FACE="Euclid, serif">Deal with equal elements as
+				follows: For each set of equal elements, divide the total number
+				of samples by the factorial of the size of the set.</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><IMG SRC="combinatorics_March2015_html_16e4d6a0.gif" NAME="Object3" HSPACE=8 WIDTH=104 HEIGHT=23></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD COLSPAN=3 WIDTH=20%>
+				<P ALIGN=RIGHT><FONT FACE="Euclid, serif">Derivation:</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><BR>
+				</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD COLSPAN=3 WIDTH=20%>
+				<P ALIGN=RIGHT><FONT FACE="Euclid, serif">Algorithm:</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><BR>
+				</P>
+			</TD>
+		</TR>
+	</TBODY>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD COLSPAN=3 WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">Notes</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">- 
+				<IMG SRC="combinatorics_March2015_html_m6e858d5b.gif" NAME="Object6" HSPACE=8 WIDTH=55 HEIGHT=18></FONT></P>
+				<P><FONT FACE="Euclid, serif">- We could also only take sequences
+				in decreasing order, or use some other kind of ordering.</FONT></P>
+				<P><FONT FACE="Euclid, serif">- Can be used when elements are
+				repeated a limited number of times - repeat elements are simply
+				mapped to separate indices.</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">- The n elements must be unique. 
+				Duplicates should be culled.</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">- 
+				<IMG SRC="combinatorics_March2015_html_m6e858d5b.gif" NAME="Object7" HSPACE=8 WIDTH=55 HEIGHT=18></FONT></P>
+				<P><FONT FACE="Euclid, serif">- If n=k, the total number of
+				samples = n!</FONT></P>
+				<P><FONT FACE="Euclid, serif">- Keep a sorted vector of the
+				current sequence (essentially the current combination), to
+				quickly check when incrementing.</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">- The n elements must be unique. 
+				Duplicates should be culled.</FONT></P>
+			</TD>
+		</TR>
+	</TBODY>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD COLSPAN=3 WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">Examples</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">-all k-note piano chords choosing
+				from n keys</FONT></P>
+				<P><FONT FACE="Euclid, serif">-all possible chords for a musical
+				ensemble (possible unisons)</FONT></P>
+				<P><FONT FACE="Euclid, serif">-all groups of k men from a pool of
+				n men</FONT></P>
+				<P><FONT FACE="Euclid, serif">-subset sums/products</FONT></P>
+				<P><FONT FACE="Euclid, serif">-finding factors of a number using
+				its prime factorization (subset products with possible repeated
+				elements)</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">-all bouquets of k flowers each,
+				from a field with n types of flowers</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">-all configurations of a family of
+				n people around a dinner table with k chairs</FONT></P>
+				<P><FONT FACE="Euclid, serif">-in sports, all possible k-man
+				starting lineups for a team of n players</FONT></P>
+			</TD>
+			<TD WIDTH=20%>
+				<P><FONT FACE="Euclid, serif">-all k-note melodies using n notes</FONT></P>
+				<P><FONT FACE="Euclid, serif">-all coordinates on a k-dimensional
+				grid</FONT></P>
+				<P><BR>
+				</P>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">Relationships
+between types of combinations:</FONT></P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">C, Cr, P are
+all subsets of Pr</FONT></P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">C is a
+subset of P, and 
+<IMG SRC="combinatorics_March2015_html_m5f571c66.gif" NAME="Object5" HSPACE=8 WIDTH=143 HEIGHT=18></FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">When
+combining from multiple sets, the total number of samples is given by
+the product of the number of possible samples from each set.</FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">Pascal's
+Triangle:</FONT></P>
+<P STYLE="margin-bottom: 0in"><IMG SRC="combinatorics_March2015_html_m41af7b53.jpg" NAME="graphics5" ALIGN=LEFT WIDTH=428 HEIGHT=376 BORDER=0><BR CLEAR=LEFT><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">P. Currivan</FONT></P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">3 March 2015</FONT></P>
+<DIV ID="sdfootnote1">
+	<P CLASS="sdfootnote"><A CLASS="sdfootnotesym" NAME="sdfootnote1sym" HREF="#sdfootnote1anc">1</A>The
+	orders of numbers are described by Pascal in &quot;On the
+	Arithmetical Triangle&quot;.  The orders are found on Pascal's
+	Triangle.  The first order is an infinite sequence of 1's, and each
+	successive order is given by summing of the previous order.  So the
+	first order is {1,1,1,1,...}, the second is {1,2,3,4,...}, the third
+	is {1,3,6,10,...}, etc.</P>
+</DIV>
+</BODY>
+</HTML>

@@ -5,7 +5,7 @@
 	<TITLE></TITLE>
 	<META NAME="GENERATOR" CONTENT="OpenOffice 4.0.1  (Win32)">
 	<META NAME="CREATED" CONTENT="20150303;4172432">
-	<META NAME="CHANGED" CONTENT="20150304;17195050">
+	<META NAME="CHANGED" CONTENT="20150304;19445430">
 	<STYLE TYPE="text/css">
 	<!--
 		@page { margin: 0.79in }
@@ -72,6 +72,17 @@ first digit which it is possible to increment, and filling the
 subsequent digits appropriately, the resulting sequence is appended
 as the rightmost child of the current node.  Thus the tree structure
 is created via depth-first recursion.</FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">	There are
+formulas for the total number of possible samples for a certain type
+of collection with a given number of elements and a given sample
+size.  When computing the number of possible samples, however, we
+cannot naively program the formulas -- the factorials involved are
+too large and will likely overflow any fixed size integral type. 
+Even if we are using an arbitrary-size integral type, it is faster to
+cancel all the common factors in the divisions involved in the
+formulas before taking the product.</FONT></P>
 <P STYLE="margin-bottom: 0in"><BR>
 </P>
 <P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif"><I>Number of
@@ -284,7 +295,7 @@ elements = n;	Sample size = k</I></FONT></P>
 				<P ALIGN=RIGHT><FONT FACE="Euclid, serif">Formula:</FONT></P>
 			</TD>
 			<TD WIDTH=20%>
-				<P><IMG SRC="combinatorics_March2015_html_17bca1a1.gif" NAME="Object1" HSPACE=8 WIDTH=224 HEIGHT=47></P>
+				<P><IMG SRC="combinatorics_March2015_html_17bca1a1.gif" NAME="Object1" HSPACE=8 WIDTH=224 HEIGHT=47><A CLASS="sdfootnoteanc" NAME="sdfootnote1anc" HREF="#sdfootnote1sym"><SUP>1</SUP></A></P>
 				<P><FONT FACE="Euclid, serif">k'th number (counting from zero) of
 				the n'th row of Pascal's triangle (e.g. the third row is
 				[1,3,3,1])</FONT></P>
@@ -292,7 +303,7 @@ elements = n;	Sample size = k</I></FONT></P>
 			<TD WIDTH=20%>
 				<P><IMG SRC="combinatorics_March2015_html_78c2f690.gif" NAME="Object4" HSPACE=8 WIDTH=285 HEIGHT=48></P>
 				<P><FONT FACE="Euclid, serif">sum of the first n numbers of
-				order<A CLASS="sdfootnoteanc" NAME="sdfootnote1anc" HREF="#sdfootnote1sym"><SUP>1</SUP></A>
+				order<A CLASS="sdfootnoteanc" NAME="sdfootnote2anc" HREF="#sdfootnote2sym"><SUP>2</SUP></A>
 				k, or the n'th number of order k+1</FONT></P>
 			</TD>
 			<TD WIDTH=20%>
@@ -331,20 +342,19 @@ elements = n;	Sample size = k</I></FONT></P>
 				<P ALIGN=RIGHT><FONT FACE="Euclid, serif">Algorithm:</FONT></P>
 			</TD>
 			<TD WIDTH=20%>
-				<P><BR>
-				</P>
+				<P><FONT FACE="Euclid, serif">Collect the union of the prime
+				factors (with repeats) of n(n-1)(n-2)...(n-k+1) and
+				(1)(2)(3)...(k), remove common factors, and product the remaining
+				factors.</FONT></P>
 			</TD>
 			<TD WIDTH=20%>
-				<P><BR>
-				</P>
+				<P><FONT FACE="Euclid, serif">Plug into combination algorithm.</FONT></P>
 			</TD>
 			<TD WIDTH=20%>
-				<P><BR>
-				</P>
+				<P><FONT FACE="Euclid, serif">Take the product from n-k+1 to n.</FONT></P>
 			</TD>
 			<TD WIDTH=20%>
-				<P><BR>
-				</P>
+				<P><FONT FACE="Euclid, serif">Compute the power.</FONT></P>
 			</TD>
 		</TR>
 	</TBODY>
@@ -356,6 +366,8 @@ elements = n;	Sample size = k</I></FONT></P>
 			<TD WIDTH=20%>
 				<P><FONT FACE="Euclid, serif">- 
 				<IMG SRC="combinatorics_March2015_html_m6e858d5b.gif" NAME="Object6" HSPACE=8 WIDTH=55 HEIGHT=18></FONT></P>
+				<P><FONT FACE="Euclid, serif">- 
+				<IMG SRC="combinatorics_March2015_html_m1002396.gif" NAME="Object8" HSPACE=8 WIDTH=137 HEIGHT=18></FONT></P>
 				<P><FONT FACE="Euclid, serif">- We could also only take sequences
 				in decreasing order, or use some other kind of ordering.</FONT></P>
 				<P><FONT FACE="Euclid, serif">- Can be used when elements are
@@ -426,7 +438,7 @@ between types of combinations:</FONT></P>
 all subsets of Pr</FONT></P>
 <P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">C is a
 subset of P, and 
-<IMG SRC="combinatorics_March2015_html_m5f571c66.gif" NAME="Object5" HSPACE=8 WIDTH=143 HEIGHT=18></FONT></P>
+<IMG SRC="combinatorics_March2015_html_91004ea.gif" NAME="Object5" HSPACE=8 WIDTH=143 HEIGHT=18></FONT></P>
 <P STYLE="margin-bottom: 0in"><BR>
 </P>
 <P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">When
@@ -434,20 +446,32 @@ combining from multiple sets, the total number of samples is given by
 the product of the number of possible samples from each set.</FONT></P>
 <P STYLE="margin-bottom: 0in"><BR>
 </P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">For n and k
+above a certain size, arbitrary-size arithmetic is needed when
+finding the number of possible samples.</FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
 <P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">Pascal's
 Triangle:</FONT></P>
 <P STYLE="margin-bottom: 0in"><IMG SRC="combinatorics_March2015_html_m41af7b53.jpg" NAME="graphics5" WIDTH=428 HEIGHT=376 BORDER=0></P>
-<P STYLE="margin-bottom: 0in"><IMG SRC="combinatorics_March2015_html_55e4d7b7.jpg" NAME="graphics6" ALIGN=BOTTOM WIDTH=415 HEIGHT=373 BORDER=0>
+<P STYLE="margin-bottom: 0in"><IMG SRC="combinatorics_March2015_html_55e4d7b7.png" NAME="graphics6" ALIGN=BOTTOM WIDTH=415 HEIGHT=373 BORDER=0>
   
-<IMG SRC="combinatorics_March2015_html_3508ddf5.jpg" NAME="graphics7" ALIGN=BOTTOM WIDTH=415 HEIGHT=371 BORDER=0>
+<IMG SRC="combinatorics_March2015_html_3508ddf5.png" NAME="graphics7" ALIGN=BOTTOM WIDTH=415 HEIGHT=371 BORDER=0>
  
-<IMG SRC="combinatorics_March2015_html_m34db744d.jpg" NAME="graphics8" ALIGN=BOTTOM WIDTH=416 HEIGHT=372 BORDER=0></P>
+<IMG SRC="combinatorics_March2015_html_m34db744d.png" NAME="graphics8" ALIGN=BOTTOM WIDTH=416 HEIGHT=372 BORDER=0></P>
 <P STYLE="margin-bottom: 0in"><BR>
 </P>
 <P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">P. Currivan</FONT></P>
 <P STYLE="margin-bottom: 0in"><FONT FACE="Euclid, serif">March 2015</FONT></P>
 <DIV ID="sdfootnote1">
-	<P CLASS="sdfootnote"><A CLASS="sdfootnotesym" NAME="sdfootnote1sym" HREF="#sdfootnote1anc">1</A>The
+	<P CLASS="sdfootnote"><A CLASS="sdfootnotesym" NAME="sdfootnote1sym" HREF="#sdfootnote1anc">1</A>This
+	formula always returns a whole number.  This can be proved using the
+	following lemma: Given k consecutive whole numbers, exactly one of
+	them is divisible by k.  It can thus be shown that any product of k
+	consecutive natural numbers is divisible by k!.</P>
+</DIV>
+<DIV ID="sdfootnote2">
+	<P CLASS="sdfootnote"><A CLASS="sdfootnotesym" NAME="sdfootnote2sym" HREF="#sdfootnote2anc">2</A>The
 	orders of numbers are described by Pascal in &quot;On the
 	Arithmetical Triangle&quot;.  The orders are found on Pascal's
 	Triangle.  The first order is an infinite sequence of 1's, and each

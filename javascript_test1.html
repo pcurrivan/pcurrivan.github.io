@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script>
+  var DateObject = function(weekday, day, month, year)
+  {
+    this.weekday = weekday; //1-7, 1=sunday
+    this.day = day;
+    this.month = month; //1-12
+    this.year = year;
+
+    CheckIfIsLeapYear();
+    FindNumberOfDaysInThisMonth();
+
+    this.CheckIfIsLeapYear = function()
+    {
+      if (year % 4 === 0 && !(year % 100 === 0 && year % 400 !== 0))
+          this.isLeapYear = true;
+      else
+          this.isLeapYear = false;
+    };
+    this.FindNumberOfDaysInThisMonth = function()
+    {
+      if (month === 2)
+      {
+          if (isLeapYear)
+              this.numDaysInThisMonth = 29;
+          else
+              this.numDaysInThisMonth = 28;
+      }
+
+      //Angry Jungle Snakes Nibble!
+      else if (month === 4 || month === 6 || month === 9 || month === 11)
+          this.numDaysInThisMonth = 30;
+      else
+          this.numDaysInThisMonth = 31;
+    };
+    this.NextDay = function()
+    {
+        weekday = (weekday === 7) ? 1 : weekday + 1;
+
+        if (day != numDaysInThisMonth)
+            day++;
+        else
+        {
+            day = 1;
+            if (month !== 12)
+                month++;
+            else
+            {
+                month = 1;
+                year++;
+                CheckIfIsLeapYear();
+            }
+            FindNumberOfDaysInThisMonth();
+        }
+    };
+  };
+
+  var CalculateDaysSinceBirth = function()
+  {
+    var date = new DateObject(5,13,3,2015);
+    for (unsigned int i = 0; true; i++)
+    {
+        if (date.year > 1988 || date.month > 9 || date.day > 22)
+            date.PreviousDay();
+        else
+        {
+            getElementById("output").innerHTML = i.toString();
+            break;
+        }
+    }
+  };
+
+  </script>
+</head>
+
+<body>
+
+<h1>Days Since Birth</h1>
+
+<p>
+  Find out how many days you have been alive.  Enter your birth date below:
+</p>
+
+<table>
+  <tr>
+    <td>day:</td> <td><input name="day" id="day" size=1></td>
+    <td>month:</td> <td><input name="month" id="month" size=1></td>
+    <td>year:</td> <td><input name="year" id="year" size=2></td>
+  </tr>
+</table>
+<br>
+<button onclick="CalculateDaysSinceBirth">Go</button>
+<p>
+  Days since birth: <a id="output"></a>
+</p>
+
+</body>
+</html>
